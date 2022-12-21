@@ -1,8 +1,6 @@
 import colors from 'colors';
-import { argv } from 'process';
 
-
-
+// Функция определения простых чисел из диапазона. На выходе массив значений.
 const simpleDig = (a, b) => {
     const array = [];
     const limit = Math.sqrt(b)
@@ -27,13 +25,7 @@ const simpleDig = (a, b) => {
 }
 
 
-// const args = process.argv.slice(2)
-// args.forEach(element => {
-//     console.log(colors.red(`Hello, ${element}`));    
-// });
-
-
-
+// Функция для организации вывода на экран
 const output = (a, b) => {
     const message = '';
     let outputArr = [];
@@ -63,5 +55,9 @@ const output = (a, b) => {
     }
     else console.log( colors.red("Неправильный ввод данных!"));
 }
+
+// получение значений из терминала
 const args = process.argv.slice(2);
+
+// вызов 
 output(parseInt(args[0]), parseInt(args[1]));
