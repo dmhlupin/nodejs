@@ -25,6 +25,10 @@ const diffDateToObj = (futureDate) => {
     return {days: days, hours: hours, minutes: minutes, seconds: seconds}
 }
 
+const diffToStr = (diff) => {
+    return `${diff.days} дней, ${diff.hours} часов, ${diff.minutes} минут, ${diff.seconds} секунд.`
+}
+
 const checkDate = (diff) => {
     if (diff.days > 0 && diff.hours > 0 && diff.minutes > 0 && diff.seconds > 0) {
         return true
@@ -35,12 +39,13 @@ const checkDate = (diff) => {
 
 class Handler {
     static timerRun(payload) {   
-        console.log(diffDateToObj(payload));
         if(!checkDate(diffDateToObj(payload))) {
             // генерируем событие Стоп
             emitterObject.emit('timerStop', payload)
         } else  
-        setInterval(() => console.log(diffDateToObj(payload)), 1000);
+        setInterval(() => {
+            console.log(diffToStr(diffDateToObj(payload)));
+        }, 1000);
     }
     static timerStop(payload) {
         console.log(`Time is up!`);
